@@ -1,0 +1,165 @@
+@import "../../mixins";
+@import "../../colors";
+
+#metallicButton {
+	margin-top: 20px;
+	padding: 0;
+	width: 490px;
+	height: 60px;
+	border-top: 2px solid rgba(255, 255, 255, 0.2);
+	border-left: 2px solid rgba(255, 255, 255, 0.2);
+	border-right: 2px solid rgba(0, 0, 0, 0.2);
+	border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+	background-color: rgba(0, 0, 0, 0.0);
+	color: rgba(0, 0, 0, 0.6);
+	font-size: 24px;
+	&:hover {
+		background-color: rgba(255, 255, 255, 0.05);
+	}
+	&:active {
+		border-top: 2px solid rgba(0, 0, 0, 0.2);
+		border-left: 2px solid rgba(0, 0, 0, 0.2);
+		border-right: 2px solid rgba(255, 255, 255, 0.2);
+		border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+	}
+}
+
+#metallicInput {
+	margin: 0;
+	margin-top: 5px;
+	padding: 10px;
+	width: 470px;
+	font-size: 20px;
+	background-color: rgba(200, 200, 200, 1);
+	color: rgba(0, 0, 0, 0.8);
+	box-shadow: inset 2px 2px 2px 0px rgba(0,0,0,0.6);
+	#selectableText;
+}
+
+#metallicWrapper {
+	display: table;
+	position: absolute;
+	border: none; 
+	height:100%;
+	width: 50%;
+	overflow: hidden; 
+	text-align: center;
+	background-color: rgba(0,0,0,0.0);
+}
+
+#metallicContainer {
+	display: table-cell;
+	vertical-align: top;
+	padding: 10px;
+	height: 100%;
+	text-align: center;
+	background-color: rgba(0,0,0,0.2);
+}
+
+#metallicTitle {
+	padding: 10px;
+	font-size: 24px;
+	font-weight: normal;
+	color: rgba(0, 0, 0, 0.7)
+}
+
+#metallicRow {
+	margin: auto;
+	padding: 10px;
+	width: 500px;
+	text-align: left;
+}
+
+#metallicLabel {
+	color: rgba(0,0,0,0.8);
+	font-size: 24px;
+}
+
+#p-alreadySignedIn {
+	padding-top:30vh;
+	padding-bottom:50vh;
+	width: 100vw;
+	position: fixed;
+	z-index: 1000;
+	background-color: @lavender;
+	display: table-cell;
+	vertical-align: center;
+	text-align: center;
+	animation: fadein 4s;
+	& h1 {
+		color: rgba(0, 0, 0, 0.6);
+		font-size: 13vh;
+		padding: 1vh;
+		border-bottom: 5px dashed rgba(0, 0, 0, 0.4);
+	}
+	& h2 {
+		color: rgba(0, 0, 0, 0.5);
+		font-size: 10vh;
+	}
+}
+
+@keyframes fadein {
+    0%		{ opacity: 0; }
+    60%		{ opacity: 0; }
+    100%	{ opacity: 1; }
+}
+
+#signUpTitle h3 {
+	#metallicTitle;
+}
+
+#signUpContainerWrapper {
+	#metallicWrapper;
+	left: 0px;
+	border-right: 2px solid rgba(255,255,255,0.2);
+}
+
+#signUpContainer {
+	#metallicContainer;
+}
+
+.signUpFormElement {
+	#metallicRow;
+}
+
+.signUpFormElement label {
+	#metallicLabel;
+}
+
+.signUpInput {
+	#metallicInput;
+}
+
+#signUpButton {
+	#metallicButton;
+}
+
+#signInTitle h3 {
+	#metallicTitle;
+}
+
+#signInContainerWrapper {
+	#metallicWrapper;
+	right: 0px;
+	border-left: 2px solid rgba(0,0,0,0.2);
+}
+
+#signInContainer {
+	#metallicContainer;
+}
+
+.signInFormElement {
+	#metallicRow;
+}
+
+.signInFormElement label {
+	#metallicLabel;
+}
+
+.signInInput {
+	#metallicInput;
+}
+
+#signInButton {
+	#metallicButton;
+}

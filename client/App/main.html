@@ -1,0 +1,49 @@
+<head>
+	<title>0kami</title>
+	<link rel="icon" href="https://dl.dropbox.com/s/7sosry4qeps9fvl/favicon.png">
+</head>
+
+<body>
+	<main>
+		{{> layout1}}  
+	</main>
+</body>
+
+<template name="layout1">
+  {{> Template.dynamic template=header}}
+  {{> Template.dynamic template=mainApp}}
+  {{> Template.dynamic template=popup}}
+</template>
+
+<template name="closeAllPopups">
+	<button id="closePopup">
+		&#10006;
+	</button>
+</template>
+
+<template name="signOutButton">
+	<button id="signOutButton">
+		Sign Out
+	</button>
+</template>
+
+<template name="avatarMenuPopup">
+	<div id="popupManager">
+	{{> closeAllPopups}}
+		<div id="avatarMenuPopup">
+			{{#if currentUser}}
+			<div id="myUserName">
+				{{currentUser.username}}
+			</div>
+			{{> signOutButton}}
+			{{/if}}
+
+			<br>
+			<a href="/home" target="_blank">
+				<button id="avatarMenuGoHome"> 
+					Website
+				</button>
+			</a>
+		</div>
+	</div>
+</template>

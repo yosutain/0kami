@@ -1,0 +1,594 @@
+<template name="openProject2">
+	<div id="mainApp" class="openProject2">
+		{{#if currentUser}}
+			{{#if accessible}}
+				<div id="p2-outerProjectWrapper" class="p2-bgColor-{{project.color}}">
+					<div id="p2-innerProjectWrapper">
+						{{> template1}}
+					</div>
+				</div>
+			{{else}}
+				<div id="p2-innerProjectWrapper">
+
+				</div>
+			{{/if}}
+		{{/if}}
+	</div>
+</template>
+
+<template name="template1">
+	<div id=template1>
+		{{> emailEditor}}
+		{{> emailPreview}}
+	</div>
+</template>
+
+<template name="emailEditor">
+	<div id=emailEditorWrapper>
+		<div id=emailEditor>
+			<div id="addElementAtTop" class="addEmailEditorElement">
+				<p>
+					Add Element Here
+				</p>
+			</div>
+
+			{{#each emailElement}}
+				{{> emailEditorElement element=this elementNumber=@index}}
+			{{/each}}
+
+			<div id="addElementAtBottomSpacer">
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="emailEditorElement">
+	<div id="emailEditorElement{{elementNumber}}" class="emailElement{{element.type}}" draggable="true" droppable="true" elementId={{element._id}}>
+	</div>
+
+	<div class="addEmailEditorElement" elementId={{element._id}}>
+		<div>
+			<p>
+				Add Element Here
+			</p>
+		</div>
+	</div>
+</template>
+
+<template name="emailPreview">
+	<div id="emailPreviewSettings">
+		<div id="sendTestEmail">
+			<div class="sendTestEmailIcon">
+			</div>
+		</div>
+		<div id="emailPreviewColorSelector">
+			<div class="p2-bgColor{{email.color}}">
+			</div>
+		</div>
+		<a id="downloadEmailAsHTML" href="{{downloadEmailAsHTML.href}}" download={{downloadEmailAsHTML.data}}>
+			<div class="emailPreviewSettingsIcon">
+				&#8615;
+			</div>
+		</a>
+	</div>
+
+	<div id="emailPreviewWrapper">
+		<div id="emailPreview" class="p2-bgColor{{email.color}}">
+			<table cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+					{{#each emailElement}}
+						{{{getEmailPreviewElement @index this}}}
+					{{/each}}
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</template>
+
+<template name="addElementPopup">
+	<div id=popupManager>
+	{{> closeAllPopups}}
+		<div id="addElementPopup">
+			<form>
+				<div class="addElementPopupRadios">
+					<input id="elementType1" type="radio" name="emailElementType" value=1 checked> 
+					<label for="elementType1">
+						<div id="p2-icon-1">
+						</div>
+					</label>
+
+					<input id="elementType4" type="radio" name="emailElementType" value=4>
+					<label for="elementType4">
+						<div id="p2-icon-4">
+						</div>
+					</label>
+
+					<input id="elementType5" type="radio" name="emailElementType" value=5>
+					<label for="elementType5">
+						<div id="p2-icon-5">
+						</div>
+					</label>
+
+					<div id="p2-elementType1Description">
+			    		<h1>Images</h1>
+			    		<p>Add images to give your email a little flair</p>
+						<input type="submit" value="Create Element">
+			    	</div>
+
+			    	<div id="p2-elementType4Description">
+			    		<h1>Texts</h1>
+			    		<p>Write texts to engage your audience</p>
+						<input type="submit" value="Create Element">
+			    	</div>
+
+					<div id="p2-elementType5Description">
+			    		<h1>Buttons</h1>
+			    		<p>Link to your content and prolong your relationship with the user</p>
+						<input type="submit" value="Create Element">
+			    	</div>
+				</div>
+		    </form>
+		</div>
+	</div>
+</template>
+
+<template name="editEmailElementPopup">
+	{{#if A_is_B element.type 1}}
+		{{> editemailElement1Popup}}
+	{{/if}}
+
+	{{#if A_is_B element.type 4}}
+		{{> editemailElement4Popup}}
+	{{/if}}
+
+	{{#if A_is_B element.type 5}}
+		{{> editemailElement5Popup}}
+	{{/if}}
+</template>
+
+<template name="editEmailElementPopupAmount">
+	<input id="p2-oneElement" type="radio" name="amount" value=1>
+	<label for="p2-oneElement">
+		<div></div>
+	</label>
+
+	<input id="p2-twoElements" type="radio" name="amount" value=2>
+	<label for="p2-twoElements">
+		<div></div>
+		<div></div>
+	</label>
+
+	<input id="p2-threeElements" type="radio" name="amount" value=3>
+	<label for="p2-threeElements">
+		<div></div>
+		<div></div>
+		<div></div>
+	</label>
+</template>
+
+<template name="editEmailElementPopupNumber">
+	<div>
+	    <label for="{{measurement}}">
+	    	{{measurement}}:
+	   	</label>
+	    <input type="number" name="{{measurement}}">
+	</div>
+</template>
+
+<template name="editEmailElementPopupURLs">
+	<div class="emailElementEditUrl">
+	    <label for="url1">
+	   	</label>
+	   	<input type="text" name="url1" placeholder="https://" autocomplete="off">
+
+	    <label for="url2">
+	   	</label>
+	    <input type="text" name="url2" placeholder="https://" autocomplete="off">
+
+	    <label for="url3">
+	   	</label>
+	    <input type="text" name="url3" placeholder="https://" autocomplete="off">
+	</div>
+</template>
+
+<template name="editEmailElementPopupTitle">
+	<div class="p2-titleText">
+	    <label for="{{title}}">
+	    	Title:
+	   	</label>
+	   	<input type="text" name="{{title}}" autocomplete="off">
+	</div>
+</template>
+
+<template name="editEmailElementPopupText">
+	<div class="p2-paragraphText">
+	    <label for="{{text}}">
+	    	Text:
+	   	</label>
+	    <textarea name="{{text}}" rows="5"></textarea>
+	</div>
+</template>
+
+
+<template name="editemailElement1Popup">
+	<div id=popupManager>
+		<div id=editElement1Popup>
+		{{> closeAllPopups}}
+		{{> deleteEmailElement}}
+			<form>
+				<div class="editElementPopupInner">
+					<div class="p2-popupRow">
+						<div id="p2-elementRadios">
+							<div>Amount of images:</div>
+							{{> editEmailElementPopupAmount}}
+						</div>
+
+						<div id="p2-measurementInputs">
+							<div>
+								{{> editEmailElementPopupNumber measurement="height"}}
+								{{> editEmailElementPopupNumber measurement="spacerTop"}}
+							</div>
+
+							<div>
+								{{> editEmailElementPopupNumber measurement="width"}}
+								{{> editEmailElementPopupNumber measurement="spacerBottom"}}
+							</div>
+						</div>
+					</div>
+
+					<div class="p2-popupRow">
+						{{> editEmailElementPopupURLs}}
+					</div>
+
+					<div class="p2-editConfirmation">
+						<input type="submit" value="Confirm Edit">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</template>
+
+<template name="editemailElement4Popup">
+	<div id=popupManager>
+		<div id=editElement4Popup>
+			{{> closeAllPopups}}
+			{{> deleteEmailElement}}
+			<form>
+				<div class="editElementPopupInner">
+					{{> emailElementColorRadios}}
+
+					<div class="emailElementFontSelector">
+						<div>Font</div>
+						<select name="fontType">
+							{{> emailFontOptions}}
+						</select>
+					</div>
+
+					<div class="p2-popupRow">
+						<div id="p2-elementRadios">
+							<div>Amount of texts:</div>
+							{{> editEmailElementPopupAmount}}
+						</div>
+
+						<div id="p2-measurementInputs">
+							<div>
+								{{> editEmailElementPopupNumber measurement="spacerTop"}}
+								{{> editEmailElementPopupNumber measurement="width"}}
+							</div>
+
+							<div>
+								{{> editEmailElementPopupNumber measurement="spacerBottom"}}
+								<div>
+								    <div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="p2-popupRow">
+						{{> editEmailElementPopupTitle title="titleText1"}}
+						{{> editEmailElementPopupText text="paragraphText1"}}
+					</div>
+
+					<div class="p2-popupRow">
+						{{> editEmailElementPopupTitle title="titleText2"}}
+						{{> editEmailElementPopupText text="paragraphText2"}}
+					</div>
+
+					<div class="p2-popupRow">
+						{{> editEmailElementPopupTitle title="titleText3"}}
+						{{> editEmailElementPopupText text="paragraphText3"}}
+					</div>
+
+					<div class="p2-editConfirmation">
+						<input type="submit" value="Confirm Edit">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</template>
+
+
+<template name="editemailElement5Popup">
+	<div id=popupManager>
+		<div id=editElement5Popup>
+			{{> closeAllPopups}}
+			{{> deleteEmailElement}}
+			<form>
+				<div class="editElementPopupInner">
+					{{> emailElementColorRadios}}
+					<div class="p2-popupRow">
+						<div id="p2-elementRadios">
+							<div>Amount of texts:</div>
+							{{> editEmailElementPopupAmount}}
+						</div>
+
+						<div id="p2-measurementInputs">
+							<div>
+								{{> editEmailElementPopupNumber measurement="spacerTop"}}
+								{{> editEmailElementPopupNumber measurement="width"}}
+							</div>
+
+							<div>
+								{{> editEmailElementPopupNumber measurement="spacerBottom"}}
+								<div>
+								    <div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="emailElementTextAreaBoxes">
+						<div>
+						    <label for="titleText1">
+						   	</label>
+						    <textarea name="titleText1" rows="1"></textarea>
+						</div>
+
+						<div>
+						    <label for="titleText2">
+						   	</label>
+						    <textarea name="titleText2" rows="1"></textarea>
+						</div>
+
+						<div>
+						    <label for="titleText3">
+						   	</label>
+						    <textarea name="titleText3" rows="1"></textarea>
+						</div>
+					</div>
+
+					<div class="p2-popupRow">
+						{{> editEmailElementPopupURLs}}
+					</div>
+
+					<div class="p2-editConfirmation">
+						<input type="submit" value="Confirm Edit">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</template>
+
+
+
+
+
+<template name="editEmailBackgroundPopup">
+	<div id=popupManager>
+		{{> closeAllPopups}}
+		<div id=editEmailBackgroundPopup>
+			<form>
+				<div>
+					{{> emailBackgroundColorRadios}}
+					<div>
+						<input type="submit" value="Confirm Edit">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</template>
+
+
+
+
+<template name="sendTestEmailPopup">
+	<div id=popupManager>
+		{{> closeAllPopups}}
+		<div id=sendTestEmailPopup>
+			<form>
+				<div>
+					<div>
+					    <label for="emailAddress">
+					    	Email Address
+					   	</label>
+					    <input type="text" name="emailAddress" value="{{currentUser.email}}" autocomplete="off">
+					</div>
+
+					<div>
+						<input type="submit" value="Send Email">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</template>
+
+
+<template name="emailFontOptions">
+	<option style="font-family:‘Courier New’, Courier, monospace;" 
+	value="‘Courier New’, Courier, monospace"> 
+		Courier New 
+	</option>
+	<option style="font-family:Courier, monospace;" 
+	value="Courier, monospace"> 
+		Courier 
+	</option>
+	<option style="font-family:‘Bookman Old Style’, serif;" 
+	value="‘Bookman Old Style’, serif">
+		Bookman Old Style
+	</option>
+	<option style="font-family:‘Arial Black’, Gadget, sans-serif;" 
+	value="‘Arial Black’, Gadget, sans-serif">
+		Arial Black
+	</option>
+	<option style="font-family:Arial, Helvetica, sans-serif;" 
+	value="Arial, Helvetica, sans-serif">
+		Arial
+	</option>
+	<option style="font-family:Verdana, Geneva, sans-serif;" 
+	value="Verdana, Geneva, sans-serif">
+		Verdana
+	</option>
+	<option style="font-family:‘Trebuchet MS’, Helvetica, sans-serif;" 
+	value="‘Trebuchet MS’, Helvetica, sans-serif">
+		Trebuchet MS
+	</option>
+	<option style="font-family:‘Times New Roman’, Times, serif;" 
+	value="‘Times New Roman’, Times, serif">
+		Times New Roman
+	</option>
+	<option style="font-family:Tahoma, Geneva, sans-serif;" 
+	value="Tahoma, Geneva, sans-serif">
+		Tahoma
+	</option>
+	<option style="font-family:‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;" 
+	value="‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif">
+		Palatino Linotype
+	</option>
+	<option style="font-family:‘MS Serif’, ‘New York’, sans-serif;" 
+	value="‘MS Serif’, ‘New York’, sans-serif">
+		MS Serif
+	</option>
+	<option style="font-family:‘MS Sans Serif’, Geneva, sans-serif;" 
+	value="‘MS Sans Serif’, Geneva, sans-serif">
+		MS Sans Serif
+	</option>
+	<option style="font-family:‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;" 
+	value="‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif">
+		Lucida Sans Unicode
+	</option>
+	<option style="font-family:‘Lucida Console’, Monaco, monospace;" 
+	value="‘Lucida Console’, Monaco, monospace">
+		Lucida Console
+	</option>
+	<option style="font-family:Impact, Charcoal, sans-serif;" 
+	value="Impact, Charcoal, sans-serif">
+		Impact
+	</option>
+	<option style="font-family:Georgia, serif;" 
+	value="Georgia, serif">
+		Georgia
+	</option>
+	<option style="font-family:Garamond, serif;" 
+	value="Garamond, serif">
+		Garamond
+	</option>
+	<option style="font-family:‘Comic Sans MS’, cursive;" 
+	value="‘Comic Sans MS’, cursive">
+		Comic Sans MS
+	</option>
+</template>
+
+<template name="emailElementColorRadios">
+	<div class="emailElementColorRadios">
+		<div>Colors</div>
+		<input id="bgColor1" type="radio" name="bgColor" value=1 checked> 
+		<label for="bgColor1">H</label>
+
+		<input id="bgColor2" type="radio" name="bgColor" value=2>
+		<label for="bgColor2">H
+		</label>
+		
+		<input id="bgColor3" type="radio" name="bgColor" value=3>
+		<label for="bgColor3">H
+		</label>
+
+		<input id="bgColor4" type="radio" name="bgColor" value=4>
+		<label for="bgColor4">H
+		</label>
+
+		<input id="bgColor5" type="radio" name="bgColor" value=5>
+		<label for="bgColor5">H
+		</label>
+
+		<input id="bgColor6" type="radio" name="bgColor" value=6> 
+		<label for="bgColor6">H
+		</label>
+
+		<input id="bgColor7" type="radio" name="bgColor" value=7>
+		<label for="bgColor7">H
+		</label>
+		
+		<input id="bgColor8" type="radio" name="bgColor" value=8>
+		<label for="bgColor8">H
+		</label>
+
+		<input id="bgColor9" type="radio" name="bgColor" value=9>
+		<label for="bgColor9">H
+		</label>
+
+		<input id="bgColor10" type="radio" name="bgColor" value=10>
+		<label for="bgColor10">H
+		</label>
+	</div>
+</template>
+
+<template name="deleteEmailElement">
+	<div id=deleteEmailElement>Remove Element</div>
+</template>
+
+
+
+<template name="emailBackgroundColorRadios">
+	<div class="emailBackgroundColorRadios">
+		<div>Background Color:</div>
+		<input id="p2-bgColor1" type="radio" name="color" value="1"> 
+		<label for="p2-bgColor1">
+		</label>
+
+		<input id="p2-bgColor2" type="radio" name="color" value="2">
+		<label for="p2-bgColor2">
+		</label>
+		
+		<input id="p2-bgColor3" type="radio" name="color" value="3">
+		<label for="p2-bgColor3">
+		</label>
+
+		<input id="p2-bgColor4" type="radio" name="color" value="4"> 
+		<label for="p2-bgColor4">
+		</label>
+
+		<input id="p2-bgColor5" type="radio" name="color" value="5">
+		<label for="p2-bgColor5">
+		</label>
+		
+		<input id="p2-bgColor6" type="radio" name="color" value="6">
+		<label for="p2-bgColor6">
+		</label>
+
+		<input id="p2-bgColor7" type="radio" name="color" value="7"> 
+		<label for="p2-bgColor7">
+		</label>
+
+		<input id="p2-bgColor8" type="radio" name="color" value="8">
+		<label for="p2-bgColor8">
+		</label>
+		
+		<input id="p2-bgColor9" type="radio" name="color" value="9">
+		<label for="p2-bgColor9">
+		</label>
+
+		<input id="p2-bgColor10" type="radio" name="color" value="10">
+		<label for="p2-bgColor10">
+		</label>
+	</div>
+</template>

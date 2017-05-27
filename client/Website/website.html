@@ -1,0 +1,91 @@
+<template name="webHeader">
+	<header id="webHeader">
+		<div id="webHeaderLocation"> 
+			You're Home
+		</div>
+
+		<div id="webHeaderTitle"> 
+			O k a m i
+		</div>
+
+		<a href="/app" target="_blank">
+			<div id="webHeaderApp">狼</div>
+		</a>
+	</header>
+</template>
+
+<template name="webHome">
+	<div id="webHome">
+		<div id="webOuterContainer">
+			<div id="webInnerContainer">
+				{{> webSection01}}
+				{{> webSection02}}
+				{{> webSection03}}
+				{{> webSection04}}
+			</div>
+		</div>
+
+		<div id="webScrollBar">
+			<div class="scrollIndicator activeScrollIndicator"></div>
+			<div class="scrollIndicator"></div>
+			<div class="scrollIndicator"></div>
+			<div class="scrollIndicator"></div>
+		</div>
+
+	</div>
+</template>
+
+<template name="webSection01">
+	<div id="webSection01">
+		<a href="/app" target="_blank">
+			<div id="webArrowToApp"></div>
+			<div id="webArrowToAppDescription">Click here to go to the app</div>
+		</a>
+		<div class="webSectionTitle">
+			<h3>"Like a cushion. Like a water bed."</h3>
+		</div>
+
+		<div class="webSectionParagraph">
+			<h3>"Like a cushion. Like a water bed."</h3>
+		</div>
+	</div>
+</template>
+
+<template name="webSection02">
+	<div id="webSection02">
+		<div class="webSectionTitle">
+			<h1>Agile Kanban</h1>
+			<h3>Lightning fast project organizer with instant cloud storage</h3>
+		</div>
+		<div id="webSection02Placeholder">
+		</div>
+	</div>
+</template>
+
+<template name="webSection03">
+	<div id="webSection03">
+		<div class="webSectionTitle">
+			<h1>API Caller</h1>
+			<h3>"So squishy. So cool."</h3>
+			<br><br>
+			<p>
+				-Asynchrous API calling made easy <br>
+				-Create a test suite to keep track of any changes <br>
+				-Get a brief overview with the possibility to dig deeper <br>
+			</p>
+		</div>
+		<div id="webSection03Placeholder">
+		</div>
+	</div>
+</template>
+
+<template name="webSection04">
+	<div id="webSection04">
+		<div class="webSectionTitle">
+			<h1>Email Creator</h1>
+			<h3>"Like cinnamon powdered cotton candy"</h3>
+		</div>
+		<div id="webSection04Placeholder">
+		</div>
+	</div>
+</template>

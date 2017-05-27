@@ -1,0 +1,225 @@
+@import "../mixins";
+@import "../colors";
+
+#webHeader {
+	position: fixed;
+	height: 60px;
+	width: 100vw;
+	font-weight: 200;
+	background-color: white;
+	transition: all 0.4s;
+	& #webHeaderLocation {
+		position: fixed;
+		top: 0;
+		left: 0;
+		line-height: 30px;
+		font-size: 30px;
+		padding: 15px;
+	}
+	& #webHeaderTitle {
+		margin: auto;
+		line-height: 30px;
+		font-size: 30px;
+		font-weight: normal;
+		padding: 15px;
+	}
+	& #webHeaderApp {
+		position: fixed;
+		top: 0;
+		right: 0;
+		line-height: 40px;
+		font-size: 30px;
+		margin: 10px;
+		height: 40px;
+		width: 40px;
+		box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.5);
+
+		color: black;
+		transition: box-shadow 0.2s;
+		&:hover {
+			color: @magenta;
+			box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.4);
+		}
+	}
+}
+
+.popOutWebHeader {
+	box-shadow: 0px 0px 4px 2px rgba(0,0,0,0.3);
+}
+
+#webArrowToApp {
+	float: right;
+	margin-top: 25px;
+	margin-right: 70px;
+	height: 100px;
+	width: 200px;
+	background: url("/img/svg/webArrowToAppBlack.svg");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 0.9;
+}
+
+#webArrowToAppDescription {
+	float: right;
+	margin-top: 30px;
+	margin-right: -100px;
+	font-size: 34px;
+	font-weight: 500;
+	color: rgba(0, 0, 0, 0.9);
+}
+
+#webOuterContainer {
+	#fullScreen;
+	overflow: hidden;
+}
+
+#webInnerContainer {
+	#fullScreenMinusHeader;
+	#innerScrollableY;
+}
+
+#webScrollBar {
+	position: fixed;
+	top: -120px;
+	right: 0;
+	height: 100vh;
+	& .scrollIndicator {
+		position: relative;
+		top: 50%;
+		-webkit-transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+		transform: translateY(-50%);
+		margin: 20px;
+		width: 30px;
+		height: 30px;
+		border-radius: 100%;
+		border: 2px solid rgba(0,0,0,0.8);
+		transition: all 0.6s;
+		box-shadow: 0px 0px 10px 2px rgba(255, 255, 255, 0.0),
+				inset 0px 0px 20px 2px rgba(255, 255, 255, 0.05);
+		&.activeScrollIndicator {
+			background-color: rgba(0,0,0,0.9);
+			box-shadow: 0px 0px 10px 2px rgba(255, 255, 255, 0.2);
+		}
+	}
+}
+
+#webSection (@bgColor) {
+	width: 100vw;
+	background-color: @bgColor;
+	display: table;
+	height: 66vw;
+	background-size: cover;
+	position: relative;
+}
+
+#webSectionPlaceholder {
+	background-size: cover;
+	width: 100vw;
+	height: 66vw;
+	position: absolute;
+	top: 0;
+	opacity: 1;
+	transition: all 2s;
+}
+
+.webSectionTitle {
+	& h1 {
+		padding: 16px;
+		font-size: 34px;
+	}
+	& h3 {
+		font-size: 26px;
+	}
+	& p {
+		font-size: 20px;
+		text-align: left;
+		padding: 10px;
+	}
+}
+
+#webSection01 {
+	width: 100vw;
+	background-color: white;
+	display: table;
+	top: 60px;
+	height:calc(~"100vh - 60px");
+	background-image: url("/img/tinydog.png");
+	background-size: cover;
+	& div.webSectionTitle {
+		position: absolute;
+		top: 50px;
+		left: 50px;
+		color: rgba(255, 255, 255, 0.9);
+		padding: 10px 20px 10px 20px;
+		background-color: rgba(0, 0, 0, 0.3);
+		box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.9),
+					1px 1px 5px 3px rgba(0, 0, 0, 0.3);
+		display: none;
+	}
+	& div.webSectionParagraph {
+		position: absolute;
+		top: 25vh;
+		width: 100vw;
+		font-size: 26px;
+		color: rgba(255, 255, 255, 0.9);
+		padding: 20px 0px 20px 0px;
+		background: linear-gradient(
+			to right, 
+			rgba(0, 0, 0, 0.2), 
+			rgba(0, 0, 0, 0.5),
+			rgba(0, 0, 0, 0.2)
+		);
+	}
+}
+
+#webSection02 {
+	#webSection (white);
+	background-image: url("/img/ss1.png");
+	& div.webSectionTitle {
+		position: absolute;
+		z-index: 1;
+		top: 15px;
+		width: 100vw;
+		text-align: center;
+	}
+}
+
+#webSection02Placeholder {
+	#webSectionPlaceholder;
+	background-image: url("/img/screenshot1smallest.jpg");
+}
+
+#webSection03 {
+	#webSection (black);
+	background-image: url("/img/ss3.png");
+	color: rgba(255, 255, 255, 0.9);
+	& div.webSectionTitle {
+		position: absolute;
+		z-index: 1;
+		top: 10vw;
+		right: 15vw;
+	}
+}
+
+#webSection03Placeholder {
+	#webSectionPlaceholder;
+	background-image: url("/img/screenshot2smallest.jpg");
+}
+
+#webSection04 {
+	#webSection (white);
+	background-image: url("/img/ss2.png");
+	& div.webSectionTitle {
+		position: absolute;
+		z-index: 1;
+		top: 10vw;
+		left: 10vw;
+	}
+}
+
+#webSection04Placeholder {
+	#webSectionPlaceholder;
+	background-image: url("/img/screenshot3smallest.jpg");
+}

@@ -1,0 +1,430 @@
+@import "../../mixins";
+@import "../../colors";
+
+#openProject3Wrapper {
+	position: absolute;
+	height:100%;
+	width: 100%;
+	overflow: hidden; 
+}
+
+.p3-bgColor-1 {
+	background: @yellow;
+}
+
+.p3-bgColor-2 {
+	background: @blue;
+}
+
+.p3-bgColor-3 {
+	background: @green;
+}
+
+.p3-bgColor-4 {
+	background: @lavender;
+}
+
+.p3-bgColor-5 {
+	background: linear-gradient(to top, darken(@red, 20%), fade(@magenta, 50%));
+}
+
+.p3-bgColor-6 {
+	background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.0)), 
+				@bg6m no-repeat center; 
+	background-size: cover;
+}
+
+.p3-bgColor-7 {
+	background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.0)), 
+				@bg7m no-repeat center; 
+	background-size: cover;
+}
+.p3-bgColor-8 {
+	background: @bg8m no-repeat center; 
+	background-size: cover;
+}
+.p3-bgColor-9 {
+	background: @bg9m no-repeat center; 
+	background-size: cover;
+}
+.p3-bgColor-10 {
+	background: @bg10m no-repeat center; 
+	background-size: cover;
+}
+
+.openProject3Wrapper {
+	#fullScreen;
+	#innerScrollableY;
+}
+
+.p3-textInput {
+	width: 700px;
+	padding: 20px;
+	background-color: @darkerGray;
+	margin: 50px auto 0px auto;
+	box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.7),
+				1px 1px 2px 2px rgba(0, 0, 0, 0.7);
+	& label {
+		font-size: 26px;
+		font-weight: 200;
+		color: @blue;
+	}
+	& input[type=text] {
+		background-color: rgba(0, 0, 0, 0.2);
+		color: @yuzu;
+		font-size: 20px;
+		text-align: center;
+		#selectableText;
+		width: 650px;
+		padding: 10px;
+		margin: 10px;
+		box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.7);
+		&.p3-invalidField {
+			color: @red;
+			box-shadow: inset 0px 0px 0px 1px fade(@red, 100%),
+						0px 0px 2px 0px fade(@red, 70%);
+		}
+	}
+}
+
+#p3-submitCallItem {
+	& input[type=submit] {
+		background-color: rgba(0, 0, 0, 0.2);
+		font-size: 20px;
+		padding: 10px;
+		padding-left: 20px;
+		padding-right: 20px;
+		margin: 10px;
+		color: @green;
+		box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.7);
+		transition: all 0.7s;
+		&:hover {
+			color: @yuzu;
+			box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.7),
+						0px 0px 5px 0px @yuzu;
+		}
+	}
+}
+
+#callItemColumn (@width) {
+	width: @width - 20;
+	height: 50px;
+	line-height: 50px;
+	padding: 10px;
+	&:hover{
+		background-color: rgba(255, 255, 255, 0.1);
+	}
+}
+
+.generate-statusCode(@color, @from, @to) when (@from =< @to) {
+	.statusCode@{from} {
+		color: @color;
+	}
+	.generate-statusCode(@color, (@from + 1), @to);
+}
+.generate-statusCode(@green, 200, 299);
+.generate-statusCode(@yellow, 300, 399);
+.generate-statusCode(@orange, 400, 499);
+.generate-statusCode(@red, 500, 599);
+.statusCode101 {
+	color: @blue;
+}
+
+#statusCodeStyle {
+}
+
+.callItem {
+	&:last-child {
+		margin-bottom: 50px;
+	}
+}
+
+.p3-callItemWrapper {
+	display: flex;
+	flex-direction: row;
+	width: 740px;
+	background-color: @darkerGray;
+	margin: auto;
+	box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.7),
+				1px 1px 2px 2px rgba(0, 0, 0, 0.7);
+	& div.p3-callItemStatus {
+		#callItemColumn (70px);
+		#statusCodeStyle;
+	}
+	& div.p3-callItemURL {
+		#callItemColumn (600px);
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		font-size: 22px;
+		#statusCodeStyle;
+	}
+	& div.p3-callItemSettings {
+		#callItemColumn (70px);
+		#statusCodeStyle;
+		font-size: 30px;
+	}
+}
+
+#callItemRunner {
+	position: fixed;
+	top: 50px;
+	left: calc(~"50vw + 380px");
+	height: calc(~"100vh - 100px");
+	width: 200px;
+	background-color: @darkerGray;
+	box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.7),
+				1px 1px 2px 2px rgba(0, 0, 0, 0.7);
+	& #p3-runAll {
+		& #p3-runAllButton {
+			background-color: rgba(0, 0, 0, 0.2);
+			font-size: 20px;
+			padding: 10px;
+			width: 160px;
+			margin: 20px;
+			color: @green;
+			box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.7);
+			transition: all 0.7s;
+			&:hover {
+				color: @yuzu;
+				box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.7),
+							0px 0px 5px 0px @yuzu;
+			}
+		}
+	}
+}
+
+#fullScreenClosePopup {
+	& #closePopup{
+		#fullScreen;
+		position: absolute;
+		z-index: 0;
+		top: 0;
+		left: 0;
+		background-color: rgba(0, 0, 0, 0.1);
+		color: rgba(0, 0, 0, 0.0);
+		border-radius: 0;
+	}
+}
+
+#callItemPopupBase {
+	#fullScreenClosePopup;
+	& #callItemPopupInner{
+		position: absolute;
+		top: calc(~"50vh - 250px");
+		left:calc(~"50vw - 500px");
+		z-index: 1;
+		height: 500px;
+		width: 1000px;
+		background-color: @darkerGray;
+		&.callItemStatusFrame0 {
+			color: @blue;
+			box-shadow: inset 0px 0px 0px 5px @blue,
+					1px 1px 2px 2px rgba(0, 0, 0, 0.7);
+		}
+		&.callItemStatusFrame1 {
+			color: @green;
+			box-shadow: inset 0px 0px 0px 5px @green,
+					1px 1px 2px 2px rgba(0, 0, 0, 0.7);
+		}
+		&.callItemStatusFrame2 {
+			color: @yellow;
+			box-shadow: inset 0px 0px 0px 5px @yellow,
+					1px 1px 2px 2px rgba(0, 0, 0, 0.7);
+		}
+		&.callItemStatusFrame3 {
+			color: @orange;
+			box-shadow: inset 0px 0px 0px 5px @orange,
+					1px 1px 2px 2px rgba(0, 0, 0, 0.7);
+		}
+		&.callItemStatusFrame4 {
+			color: @red;
+			box-shadow: inset 0px 0px 0px 5px @red,
+					1px 1px 2px 2px rgba(0, 0, 0, 0.7);
+		}
+	}
+}
+
+#callItemStatusPopup {
+	#callItemPopupBase;
+	& #p3-statusMessage {
+		margin: 50px;
+		& h1 {
+			font-size: 30px;
+		}
+		& h4 {
+			&.callItemStatusFrame0 {
+				color: @blue;
+				box-shadow: inset 0px 0px 0px 1px @blue,
+							inset 1px 1px 2px 2px rgba(0, 0, 0, 0.7);
+			}
+			&.callItemStatusFrame1 {
+				color: @green;
+				box-shadow: inset 0px 0px 0px 1px @green,
+							inset 1px 1px 2px 2px rgba(0, 0, 0, 0.7);
+			}
+			&.callItemStatusFrame2 {
+				color: @yellow;
+				box-shadow: inset 0px 0px 0px 1px @yellow,
+							inset 1px 1px 2px 2px rgba(0, 0, 0, 0.7);
+			}
+			&.callItemStatusFrame3 {
+				color: @orange;
+				box-shadow: inset 0px 0px 0px 1px @orange,
+							inset 1px 1px 2px 2px rgba(0, 0, 0, 0.7);
+			}
+			&.callItemStatusFrame4 {
+				color: @red;
+				box-shadow: inset 0px 0px 0px 1px @red,
+							inset 1px 1px 2px 2px rgba(0, 0, 0, 0.7);
+			}
+			padding: 50px;
+			margin-top: 50px;
+			font-size: 24px;
+		}
+	}
+}
+
+#callItemContentBase(@color) {
+	color: @color;
+	box-shadow: inset 0px 0px 0px 1px @color,
+				inset 1px 1px 2px 2px rgba(0, 0, 0, 0.7);
+	& .p3-resultBlock > div {
+		box-shadow: inset 0px 0px 0px 1px @color,
+					1px 1px 2px 2px rgba(0, 0, 0, 0.7);
+		transition: all 0.4s;
+		&:hover {
+			box-shadow: inset 0px 0px 0px 1px @color,
+						1px 1px 2px 2px rgba(0, 0, 0, 0.7),
+						0px 0px 2px 1px @color;
+			background-color: fade(@color, 10%)
+		}
+		& > div {
+			border-color: @color;
+		}
+	}
+}
+
+#callItemURLPopup {
+	#callItemPopupBase;
+	& h1 {
+		position: absolute;
+		width: 100px;
+		left: 100px;
+		top: 15px;
+		text-align: left;
+	}
+	& .callItemStatusFrame0 #p3-callItemContent { 
+		#callItemContentBase(@blue);
+	}
+	& .callItemStatusFrame1 #p3-callItemContent { 
+		#callItemContentBase(@green);
+	}
+	& .callItemStatusFrame2 #p3-callItemContent { 
+		#callItemContentBase(@yellow);
+	}
+	& .callItemStatusFrame3 #p3-callItemContent { 
+		#callItemContentBase(@orange);
+	}
+	& .callItemStatusFrame4 #p3-callItemContent { 
+		#callItemContentBase(@red);
+	}
+	& #p3-callItemContent {
+		height: 400px;
+		width: 800px;
+		margin: 50px auto;
+		overflow: hidden;
+		& > div {
+			height: 400px;
+			#innerScrollableY;
+		}
+		& .p3-resultBlock {
+			width: 800px;
+			overflow: hidden;
+		}
+		& .p3-resultBlock > div {
+			padding: 10px;
+			margin: 20px auto;
+			width: 700px;
+			& > div.p3-myContent {
+				opacity: 0;
+				height: 0;
+				transition: all 1s;
+			}
+			&.showMyContent {
+				& > div.p3-myContent {
+					margin-top: 10px;
+					padding-top: 10px;
+					border-top: 1px dashed;
+					opacity: 1;
+					height: 20px;
+				}
+			}
+		}
+	}
+}
+
+#callItemSettingsPopup {
+	#callItemPopupBase;
+	& .callItemStatusFrame0 #p3-deleteCallItemButton { 
+		color: @blue;
+		box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.7);
+		&:hover {
+			box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.7),
+						0px 0px 5px 2px @blue;
+		}
+	}
+	& .callItemStatusFrame1 #p3-deleteCallItemButton { 
+		color: @green;
+		box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.7);
+		&:hover {
+			box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.7),
+						0px 0px 5px 2px @green;
+		}
+	}
+	& .callItemStatusFrame2 #p3-deleteCallItemButton { 
+		color: @yellow;
+		box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.7);
+		&:hover {
+			box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.7),
+						0px 0px 5px 2px @yellow;
+		}
+	}
+	& .callItemStatusFrame3 #p3-deleteCallItemButton { 
+		color: @orange;
+		box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.7);
+		&:hover {
+			box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.7),
+						0px 0px 5px 2px @orange;
+		}
+	}
+	& .callItemStatusFrame4 #p3-deleteCallItemButton { 
+		color: @red;
+		box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.7);
+		&:hover {
+			box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.7),
+						0px 0px 5px 2px @red;
+		}
+	}
+	& #p3-deleteCallItem {
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin: 50px;
+		& #p3-deleteCallItemButton {
+			background-color: rgba(0, 0, 0, 0.2);
+			font-size: 20px;
+			padding: 10px;
+			height: 45px;
+			width: 160px;
+			transition: all 0.7s;
+			&.p3-confirmDeleteCallItem {
+				font-size: 0;
+				&::after {
+					font-size: 20px;
+					content: "Really?";
+				}
+			}
+		}
+	}
+}

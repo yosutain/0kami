@@ -1,0 +1,1008 @@
+@import "../../mixins";
+@import "../../colors";
+
+#beforeEmailElement {
+	float: left;
+	margin: 10px; 
+	font-size: 24px;
+}
+
+#afterEmailElement {
+	content: "";
+	float: right;
+	height: 50px;
+	width: 50px;
+	margin-right: 10px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 1;
+}
+
+#emailElement(@backgroundColor) {
+	display: block;
+	width: 39vw;
+	height: 50px;
+	margin-right: 20px;
+	margin-left: 20px;
+	color: rgba(0, 0, 0, 0.4);
+	font-weight: 700;
+	box-shadow: inset 0px 0px 0px 5px rgba(250, 250, 250, 0.5),
+				1px 1px 2px 2px rgba(0, 0, 0, 0.2);
+	border-radius: 2px;
+	background-color: fade(@backgroundColor, 100%);
+	background-clip: content-box;
+	transition: 0.5s;
+	&:hover, &.dragToElement {
+		transition: 0.5s;
+		color: rgba(250, 250, 250, 0.6);
+    	box-shadow: inset 0px 0px 0px 5px rgba(250, 250, 250, 0.6),
+				1px 1px 3px 3px rgba(0, 0, 0, 0.3);
+    }
+}
+
+.p2-bgColor-1 {
+	background: linear-gradient(to top, darken(@yellow, 20%), #aaaaaa);
+}
+
+.p2-bgColor-2 {
+	background: linear-gradient(to top, darken(@blue, 20%), #aaaaaa);
+}
+
+.p2-bgColor-3 {
+	background: linear-gradient(to top, darken(@green, 20%), #aaaaaa);
+}
+
+.p2-bgColor-4 {
+	background: linear-gradient(to top, darken(@lavender, 20%), #aaaaaa);
+}
+
+.p2-bgColor-5 {
+	background: linear-gradient(to top, darken(@red, 20%), fade(@magenta, 50%));
+}
+
+.p2-bgColor-6 {
+	background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.0)), 
+				@bg6m no-repeat center; 
+	background-size: cover;
+}
+
+.p2-bgColor-7 {
+	background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.0)), 
+				@bg7m no-repeat center; 
+	background-size: cover;
+}
+.p2-bgColor-8 {
+	background: @bg8m no-repeat center; 
+	background-size: cover;
+}
+.p2-bgColor-9 {
+	background: @bg9m no-repeat center; 
+	background-size: cover;
+}
+.p2-bgColor-10 {
+	background: @bg10m no-repeat center; 
+	background-size: cover;
+}
+
+#p2-outerProjectWrapper {
+	position: absolute;
+	overflow: hidden; 
+	#fullScreen;
+}
+
+#p2-innerProjectWrapper {
+	#fullScreenMinusHeader;
+	#innerScrollableY;
+}
+
+.emailElement1:before {
+	content: "Images";
+	#beforeEmailElement;
+}
+
+.emailElement1:after {
+	background: url("/img/svg/emailelement1.svg");
+	#afterEmailElement;
+}
+
+.emailElement1 {
+	#emailElement(@blue)
+}
+
+.emailElement4:before {
+	content: "Texts";
+	#beforeEmailElement
+}
+
+.emailElement4:after {
+	background: url("/img/svg/emailelement4.svg");
+	#afterEmailElement;
+}
+
+.emailElement4 {
+	#emailElement(@green)
+}
+
+.emailElement5:before {
+	content: "Buttons";
+	#beforeEmailElement
+}
+
+.emailElement5:after {
+	background: url("/img/svg/emailelement5.svg");
+	#afterEmailElement;
+}
+
+.emailElement5 {
+	#emailElement(@magenta)
+}
+
+#p2-elementSelectorIcon (@url, @title) {
+	&::before{
+		content:@title;
+		font-size: 40px;
+		font-weight: 400;
+		height: 50px;
+		width: 200px;
+		position: relative;
+		top: -110px;
+	}
+	margin-top: 50px;
+	height: 150px;
+	width: 200px;
+	background: @url;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 0.3;
+}
+
+#p2-icon-1 {
+	#p2-elementSelectorIcon(url("/img/svg/emailelement1.svg"), "Images");
+}
+#p2-icon-4 {
+	#p2-elementSelectorIcon(url("/img/svg/emailelement4.svg"), "Texts");
+}
+#p2-icon-5 {
+	#p2-elementSelectorIcon(url("/img/svg/emailelement5.svg"), "Buttons");
+}
+
+#emailPreviewSettings{
+	position: fixed;
+	right: 24px;
+	width: calc(~"60vw - 90px");
+	top: 20px;
+}
+
+#emailPreviewSettings > div {
+	margin: auto; 
+	height: 40px;
+	width: 40px;
+	border-radius: 40px;
+	border: 2px solid rgba(0, 0, 0, 0.3);
+	display: inline-block;
+	transition: all 0.5s;
+	&:hover {
+		transition: all 0.5s;
+		border: 2px solid rgba(0, 0, 0, 0.9);
+		background-color: rgba(0, 0, 0, 0.1);
+	}
+}
+
+#emailPreviewSettings > a {
+	margin: auto; 
+	height: 40px;
+	width: 40px;
+	border-radius: 40px;
+	border: 2px solid rgba(0, 0, 0, 0.3);
+	display: inline-block;
+	color: rgba(0, 0, 0, 0.7);
+	transition: all 0.5s;
+	&:hover {
+		transition: all 0.5s;
+		border: 2px solid rgba(0, 0, 0, 0.9);
+		background-color: rgba(0, 0, 0, 0.1);
+	}
+}
+
+.emailPreviewSettingsIcon {
+	line-height: 40px;
+	width: 40px;
+	font-size: 20px;
+	position: absolute;
+}
+
+.sendTestEmailIcon {
+	height: 32px;
+	width: 32px;
+	margin: 4px;
+	background: url("/img/svg/email.svg");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 0.7;
+}
+
+#emailPreviewColorSelector div {
+	margin: 5px;
+	height: 26px;
+	width: 26px;
+	border: 2px solid rgba(0, 0, 0, 0.2);
+	border-radius: 30px;
+}
+
+#sendTestEmailPopup {
+	background-color: rgba(200,200,200,0.9);
+	height: 100vh;
+	padding-top: 50px;
+}
+
+#sendTestEmailPopup label {
+	display: block;
+	font-size: 34px;
+	padding: 10px;
+	margin-top: 30px;
+	font-weight: 200;
+	text-decoration: underline;
+}
+
+#sendTestEmailPopup input[type=text] {
+	background-color: rgba(255, 255, 255, 0.2);
+	font-size: 20px;
+	text-align: center;
+	width: 650px;
+	padding: 10px;
+	margin: 30px;
+	border: 1px rgba(0, 0, 0, 0.7) solid;
+	#selectableText
+}
+
+#sendTestEmailPopup input[type=submit] {
+	#greenSubmitButton;
+}
+
+
+#editEmailBackgroundPopup {
+	background-color: rgba(200,200,200,0.9);
+	height: 100vh;
+	padding-top: 50px;
+}
+
+#editEmailBackgroundPopup > form > div {
+	margin: auto;
+	display: block;
+	#fullScreen;
+	#innerScrollableY;
+}
+
+.emailBackgroundColorRadios {
+	display: table;
+	margin: auto;
+	padding: 20px;
+	& > div {
+		font-size: 34px;
+		padding: 20px;
+		font-weight: 200;
+		text-decoration: underline;
+	}
+}
+
+.emailBackgroundColorRadios input[type=radio] {
+	display: none;
+}
+
+.emailBackgroundColorRadios input[type=radio]:checked + label {
+	border: 2px rgba(0, 0, 0, 0.9) solid;
+	box-shadow: 0px 0px 0px 5px rgba(255, 255, 255, 0.7),
+				1px 1px 5px 7px rgba(0, 0, 0, 0.5);
+}
+
+.emailBackgroundColorRadios label {
+	border: 2px rgba(0, 0, 0, 0.7) solid;
+	box-shadow: inset 0px 0px 10px 1px rgba(255, 255, 255, 0);
+	margin: 20px;
+	width: 40px;
+	height: 40px;
+	border-radius: 40px;
+	display: inline-block;
+}
+
+#editEmailBackgroundPopup input[type=submit] {
+	#greenSubmitButton;
+}
+
+#emailPreviewWrapper {
+	position: absolute;
+	right: 115px;
+	top: 18px;
+	height:calc(~"100vh - 80px");
+	width: calc(~"60vw - 90px");
+	overflow: hidden; 
+	background-color: rgba(0, 0, 0, 0.2);
+	border: 2px solid rgba(0, 0, 0, 0.0);
+	border-bottom: 0px solid rgba(0, 0, 0, 0.0);
+	border-radius: 15px 15px 0 0;
+	box-shadow: inset 1px 1px 2px 0px rgba(0, 0, 0, 0.5);
+}
+
+#emailPreview {
+	padding-top: 20px;
+	width: calc(~"100% + 6px");
+	height:calc(~"100% - 20px");
+	#innerScrollableY;
+}
+
+#emailPreview > table {
+	margin: auto;
+	width: 650px;
+	padding-bottom: 20px;
+}
+
+.emailElement2-textContainer {
+	display: block;
+	width: 630px;
+	padding: 10px;
+}
+
+.emailElement5-button tr td{
+	vertical-align: middle;
+}
+
+#emailEditorWrapper {
+	position: absolute;
+	left: 0px;
+	margin: 0;
+	padding: 0;
+	border: none; 
+	height:calc(~"100vh - 60px");
+	width: 40%;
+	overflow: hidden; 
+	text-align: center;
+	background-color: rgba(0,0,0,0.0);
+	border-right: 2px solid rgba(0,0,0,0.2);
+}
+
+#emailEditor {
+	position: absolute;
+	left: 0px;
+	margin: 0;
+	padding: 0;
+	border: none; 
+	height:100%;
+	width: 100%;
+	#innerScrollableY
+}
+
+.emailPreviewElement h4 {
+	display: block;
+    margin-top: 1.33em;
+    margin-bottom: 1.33em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.emailPreviewElement {
+	transition: all 0.5s;
+}
+
+.affectedPreviewElement {
+	opacity: 1;
+	background-color: rgba(0,0,0,0.5);
+	box-shadow: 20px 0px 0px 0px rgba(0,0,0,0.5),
+				-20px 0px 0px 0px rgba(0,0,0,0.5);
+}
+
+.elementBeingDragged {
+	opacity: 0.3;
+}
+
+#deleteEmailElement {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	font-size: 24px;
+	color: rgba(0,0,0,0.5); 
+	transition: all 0.3s;
+	&:hover {
+		color: rgba(0,0,0,0.8); 
+	}
+	&.confirmDeleteEmailElement {
+		color: fade(@red, 60%); 
+	}
+	&.confirmDeleteEmailElement:hover {
+		color: fade(@red, 90%); 
+	}
+}
+
+.addEmailEditorElement {
+	display: block;
+	overflow: hidden;
+	height: 0px;
+	padding-top: 20px;
+	font-size: 24px;
+	color: rgba(0,0,0,0.8);
+	transition: all 0.5s;
+}
+
+.addEmailEditorElement p {
+	margin: 0;
+	padding: 0;
+}
+
+.addEmailEditorElement:hover {
+	transition: all 1s;
+	transition-delay: 0.5s;
+	height: 40px;
+	padding-top: 10px;
+}
+
+.addEmailEditorElement:nth-last-child(2) {
+	height: 40px;
+	padding: 20px;
+	color: rgba(0,0,0,0.8);
+	text-align: center
+}
+
+.addEmailEditorElement:nth-last-child(2) div {
+	display: block;
+	padding: 10px;
+	border: 1px dashed rgba(0,0,0,0.8);
+	font-size: 24px;
+	background-color: rgba(0, 0, 0, 0.3);
+	color: rgba(255,255,255,0.7);
+}
+
+.addEmailEditorElement:nth-last-child(2) div:hover {
+	background-color: rgba(0, 0, 0, 0.4);
+	color: rgba(255,255,255,0.8);
+}
+
+#addElementAtBottomSpacer {
+	height: 150px;
+	visibility: hidden;
+}
+
+#addElementPopup {
+	#fullScreen;
+	padding-top: 50px;
+	text-align: center;
+	overflow: hidden;
+	cursor: default;
+	background-color: rgba(150, 150, 150, 0.95);
+}
+
+.addElementPopupRadios {
+	display: table;
+	font-size: 20px;
+	margin: auto;
+}
+
+.addElementPopupRadios input[type=radio] {
+	display: none;
+}
+
+.addElementPopupRadios input[type=radio]:checked + label {
+	color: rgba(0, 0, 0, 0.9);
+	box-shadow: inset 0px 0px 10px 1px rgba(255, 255, 255, 0.2);
+}
+
+.addElementPopupRadios label {
+	color: rgba(0, 0, 0, 0.4);
+	margin: 10px;
+	width: 200px;
+	height: 200px;
+	line-height: 200px;
+	background-color: rgba(255, 255, 255, 0.2);
+	display: inline-block;
+}
+
+#p2-elementType1Description,
+#p2-elementType4Description,
+#p2-elementType5Description {
+	display: none;
+}
+
+#elementTypeDescription(@arrowLocation) {
+	display: table;
+	position: relative;
+	height: 200px;
+	width: 650px;
+	margin: auto;
+	background: rgba(255, 255, 255, 0.4);
+	&:before {
+		top: -40px;
+		left: @arrowLocation;
+		border: solid;
+		content: " ";
+		position: absolute;
+		border-color: rgba(0, 0, 0, 0);
+		border-bottom-color: rgba(255, 255, 255, 0.4);
+		border-width: 20px;
+		margin-left: -20px;
+	}
+	& h1{
+		margin-top: 10px;
+		font-size: 24px;
+		display: block;
+	}
+	& p{
+		text-align: left;
+		padding: 30px;
+		font-size: 18px;
+		display: block;
+	}
+}
+
+#elementType1:checked {
+	& + label {
+		background-color: @blue;
+		& > div {
+			opacity: 0.8;
+		}
+	}
+	& ~ #p2-elementType1Description {
+		#elementTypeDescription(15%);
+	}
+}
+
+#elementType4:checked {
+	& + label {
+		background-color: @green;
+		& > div {
+			opacity: 0.8;
+		}
+	}
+	& ~ #p2-elementType4Description {
+		#elementTypeDescription(50%);
+	}
+}
+
+#elementType5:checked {
+	& + label {
+		background-color: @magenta;
+		& > div {
+			opacity: 0.8;
+		}
+	}
+	& ~ #p2-elementType5Description {
+		#elementTypeDescription(85%);
+	}
+}
+
+#addElementPopup input[type=submit] {
+	#greenSubmitButton;
+}
+
+#editElementFrame1 {
+	border: 2px solid rgba(255, 255, 255, 0.2);
+	border-radius: 15px;
+	box-shadow: inset 1px 1px 4px 1px rgba(0,0,0,0.5);
+}
+
+#editElementFrame2(@color) {
+	border: 1px solid fade(@color, 85%);
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px 5px fade(@color, 15%);
+}
+
+#editElementPopupWrapper(@color) {
+	background-color: rgba(0, 0, 0, 0.95);
+	& #closePopup {
+		color: fade(@color, 80%);
+		background-color: black;
+		box-shadow: inset 1px 1px 4px 1px @color;
+		&:hover {
+			color: fade(@color, 100%);
+		}
+	}
+	& #deleteEmailElement {
+		color: fade(@color, 50%);
+		&:hover {
+			color: @orange;
+		}
+	}
+	color: fade(@color, 100%);
+	font-size: 24px;
+	#fullScreen;
+	& .emailElementTextAreaBoxes,
+	& .emailElementFontSelector,
+	& .p2-editConfirmation,
+	& .emailElementColorRadios,
+	& .p2-popupRow {
+		#editElementFrame2(@color);
+	}
+	& input,
+	& textarea,
+	& select {
+		background-color: fade(@color, 10%);
+		color: darken(@color, 20%);
+		border-radius: 8px;
+		border: 1px fade(@color, 80%) solid;
+		box-shadow: 0px 0px 4px 2px fade(@color, 20%),
+					inset 0px 0px 4px 1px fade(@color, 20%);
+		&:hover {
+			border: 1px fade(@color, 100%) solid;
+			box-shadow: 0px 0px 4px 2px fade(@color, 40%),
+					inset 0px 0px 4px 1px fade(@color, 40%);
+		}
+		& option {
+			color: fade(@color, 80%); 
+			box-shadow: inset 0px 0px 40px 40px fade(@color, 10%),
+  						inset 0px 0px 40px 40px black;
+			&:hover{
+  				box-shadow: inset 0px 0px 40px 40px fade(@color, 40%),
+  							inset 0px 0px 40px 40px black;
+  				color: black; 
+			}
+		}
+	}
+	& .emailElementColorRadios {
+		background-color: fade(@color, 20%);
+		& input + label{
+			border: 2px rgba(0, 0, 0, 0.9) solid;
+		}
+		& input:checked + label{
+			border: 2px rgba(0, 0, 0, 0.9) solid;
+			box-shadow: 0px 0px 10px 4px @color;
+		}
+	}
+	& .p2-editConfirmation {
+		& > input {
+			background-color: fade(@color, 10%);
+			color: fade(@color, 80%);
+			&:hover {
+				color: fade(@color, 100%);
+			}
+		}
+	}
+	& #p2-oneElement,
+	& #p2-twoElements,
+	& #p2-threeElements {
+		& + label div {
+			background-color: fade(@color, 10%);
+			box-shadow: 0px 0px 4px 0px fade(@color, 20%),
+					inset 0px 0px 0px 1px fade(@color, 80%);
+	    }
+	    &:checked + label div {
+	    	background: fade(@color, 35%);
+	    	box-shadow: 0px 0px 4px 0px fade(@color, 40%),
+					inset 0px 0px 0px 1px fade(@color, 100%);
+	    }
+	}
+	& #p2-elementRadios {
+		padding-right: 20px; 
+		border-right: 1px @color solid;
+	}
+}
+
+#editElement1Popup {
+	#editElementPopupWrapper(@blue)
+}
+
+#editElement4Popup {
+	#editElementPopupWrapper(@green)
+}
+
+#editElement5Popup {
+	#editElementPopupWrapper(@magenta)
+}
+
+.editElementPopupInner {
+	#fullScreen;
+	#innerScrollableY;
+}
+
+.emailElementColorRadios {
+	display: table;
+	margin: 40px auto;
+	padding: 20px;
+	width: 800px;
+	& > div {
+		display: block;
+		padding: 10px;
+	}
+	& input {
+		display: none;
+	}
+	& input + label {
+		margin: 10px;
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+		border-radius: 40px;
+		display: inline-block;
+		border: 2px rgba(0, 0, 0, 0.2) solid;
+		color: black;
+	}
+}
+
+.p2-popupRow {
+	display: table;
+	margin: 40px auto;
+	width: 800px;
+	padding: 20px;
+}
+
+#p2-textRow() {
+	width: 800px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	display: table;
+	font-size: 18px;
+	& > label {
+		display: table-cell;
+		float: left;
+		width: 40px;
+		padding-right: 10px;
+	}
+	& > input,
+	& > textarea {
+		display: table-cell;
+		width: 720px;
+		padding: 10px;
+		#selectableText;
+	}
+}
+
+.p2-titleText {
+	#p2-textRow;
+}
+
+.p2-paragraphText {
+	#p2-textRow;
+}
+
+
+.p2-editConfirmation {
+	display: table;
+	margin: 40px auto;
+	width: 800px;
+	padding: 20px;
+	& > input {
+		float: right;
+		border-radius: 10px;
+		padding: 10px;
+		padding-left: 30px;
+		padding-right: 30px;
+		margin: 10px;
+	}
+}
+
+#p2-elementRadios {
+	width: 350px;
+	display: table-cell;
+	& > div {
+		display: block;
+		margin-bottom: 10px;
+	}
+}
+
+#elementRadio(@width) {
+	display: none;
+	& + label {
+    	margin: auto;
+		width: 250px;
+		height: 50px;
+		display: block;
+		div {
+			width: @width;
+			height: 45px;
+			display: inline-block;
+			border-radius: 4px;
+	    }
+    }
+}
+
+#p2-oneElement {
+	#elementRadio(200px)
+}
+
+#p2-twoElements {
+	#elementRadio(98px)
+}
+
+#p2-threeElements {
+	#elementRadio(64px)
+}
+
+#p2-measurementInputs {
+	width: 300px;
+	display: table-cell;
+}
+
+#p2-measurementInputs div {
+	display: table;
+	padding-left: 30px;
+	padding-right: 30px;
+	width: 300px;
+	& div {
+		display: table-cell;
+    }
+    & div div {
+    	display: table;
+		width: 95px;
+	}
+	& div input {
+		text-align: center;
+		width: 110px;
+		padding: 10px;
+		margin: 11px;
+		#selectableText;
+	}
+}
+
+.emailElementFontSelector {
+	display: table;
+	margin: 40px auto;
+	width: 800px;
+	padding: 20px;
+	& > div {
+		display: block;
+		font-size: 24px;
+		padding: 10px;
+	}
+}
+
+.emailElementFontSelector select {
+	background-color: rgba(255, 255, 255, 0.2);
+	text-align: center;
+	width: 650px;
+	padding: 10px;
+	margin: 10px;
+}
+
+.emailElementFontSelector select option{
+	border:0px;
+    outline:0px;
+}
+
+.emailElementEditUrl label {
+	display: block;
+}
+
+.emailElementEditUrl input[type=text] {
+	text-align: center;
+	#selectableText;
+	width: 650px;
+	padding: 10px;
+	margin: 20px;
+}
+
+.emailElementEditRadios {
+	display: table;
+	margin: auto;
+}
+
+.emailElementTextAreas label {
+	display: block;
+}
+
+.emailElementTextAreas textarea {
+	#selectableText;
+	width: 650px;
+	padding: 20px;
+	margin: 10px;
+}
+
+.emailElementTextAreaBoxes {
+	padding: 20px;
+	margin: 40px auto;
+	width: 800px;
+}
+
+.emailElementTextAreaBoxes > div {
+	display: inline-block;
+}
+
+.emailElementTextAreaBoxes label {
+	display: block;
+}
+
+.emailElementTextAreaBoxes textarea {
+	#selectableText;
+	width: 200px;
+	padding: 10px;
+	margin: 20px;
+}
+
+#bgColor1 + label {
+	background-color: #ffffff;
+	color: 000000;
+}
+
+#bgColor2 + label {
+	background-color: #dddddd;
+	color: 000000;
+}
+
+#bgColor3 + label {
+	background-color: #999999;
+	color: 000000;
+}
+
+#bgColor4 + label {
+	background-color: #555555;
+	color: #ffffff;
+}
+
+#bgColor5 + label {
+	background-color: #333333;
+	color: #ffffff;
+}
+
+#bgColor6 + label {
+	background-color: #333333;
+	color: #ff1188;
+}
+
+#bgColor7 + label {
+	background-color: #ff6e66;
+	color: #ffffff;
+}
+
+#bgColor8 + label {
+	background-color: #77dd77;
+	color: #ffffff;
+}
+
+#bgColor9 + label {
+	background-color: #779ecb;
+	color: #ffffff;
+}
+
+#bgColor10 + label {
+	background-color: none;
+	color: 000000;
+}
+
+#p2-bgColor1 + label,
+.p2-bgColor1 {
+	background-color: #ffffff;
+}
+
+#p2-bgColor2 + label,
+.p2-bgColor2 {
+	background-color: #dddddd;
+}
+
+#p2-bgColor3 + label,
+.p2-bgColor3 {
+	background-color: #999999;
+}
+
+#p2-bgColor4 + label,
+.p2-bgColor4 {
+	background-color: #555555;
+}
+
+#p2-bgColor5 + label,
+.p2-bgColor5 {
+	background-color: #333333;
+}
+
+#p2-bgColor6 + label,
+.p2-bgColor6 {
+	background-color: #000000;
+}
+
+#p2-bgColor7 + label,
+.p2-bgColor7 {
+	background-color: #ff6e66;
+}
+
+#p2-bgColor8 + label,
+.p2-bgColor8 {
+	background-color: #77dd77;
+}
+
+#p2-bgColor9 + label,
+.p2-bgColor9 {
+	background-color: #779ecb;
+}
+
+#p2-bgColor10 + label,
+.p2-bgColor10 {
+	background-color: none;
+}

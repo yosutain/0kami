@@ -1,0 +1,126 @@
+<template name="openProject3">
+	<div id="mainApp" class="openProject3">
+		{{#if currentUser}}
+			{{#if accessible}}
+				<div id="openProject3Wrapper" class="p3-bgColor-{{project.color}}">
+					<div class="openProject3Wrapper">
+						{{> addCallItem}}
+						{{> callItemList}}
+						{{> callItemRunner}}
+					</div>
+				</div>
+			{{else}}
+				<div class="openProject3Wrapper">
+				</div>
+			{{/if}}
+		{{/if}}
+	</div>
+</template>
+
+<template name="addCallItem">
+	<form id="addCallItem">
+		<div>
+			<div class="p3-textInput">
+				<div>
+				    <label for="url">
+				    	Add URL to Call
+				   	</label>
+				   	<br>
+				    <input type="text" name="url" autocomplete="off">
+				</div>
+
+				<div id="p3-submitCallItem">
+					<input type="submit" value="add to list">
+				</div>
+			</div>
+		</div>
+	</form>
+</template>
+
+<template name="callItemList">
+	<div id="callItemList">
+		{{#each callItemList}}
+			{{> callItem item=this}} 
+		{{/each}}
+	</div>
+</template>
+
+<template name="callItem">
+	<div class="callItem">
+		<div class="p3-callItemWrapper">
+			<div class="p3-callItemStatus statusCode{{item.status}}" 
+			callId="{{item.id}}">
+				{{{item.status}}}
+			</div>
+
+			<div class="p3-callItemURL statusCode{{item.status}}" 
+			callId="{{item.id}}">
+				{{{item.url}}}
+			</div>
+			<div class="p3-callItemSettings statusCode{{item.status}}" 
+			callId="{{item.id}}">
+				⚙
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="callItemRunner">
+	<div id="callItemRunner">
+		<div id="p3-runAll">
+			<button id="p3-runAllButton">Run All</button>
+		</div>
+	</div>
+</template>
+
+
+<template name="callItemStatusPopup">
+	<div id=popupManager>
+		<div id="callItemStatusPopup">
+		{{> closeAllPopups}}
+			<div id="callItemPopupInner" class="{{statusFrame}} statusCode{{statusCode}}">
+				<div id="p3-statusMessage">
+					<h1>
+						Status {{statusCode}}:
+					</h1>
+
+					<h4 class="{{statusFrame}}">
+						{{statusMessage}}
+					</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="callItemURLPopup">
+	<div id=popupManager>
+		<div id="callItemURLPopup">
+		{{> closeAllPopups}}
+			<div id="callItemPopupInner" class="{{statusFrame}}">
+				<h1>
+					Content:
+				</h1>
+
+				<div id="p3-callItemContent">
+					<div>
+					{{{responseContent}}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="callItemSettingsPopup">
+	<div id=popupManager>
+		<div id="callItemSettingsPopup">
+		{{> closeAllPopups}}
+			<div id="callItemPopupInner" class="{{statusFrame}}">
+				<div id="p3-deleteCallItem">
+					<button id="p3-deleteCallItemButton">Delete</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

@@ -1,0 +1,86 @@
+<template name="signedOut">
+	{{> register}}
+	{{> login}}
+	{{#if currentUser}}
+		<a href="/app/projects">
+			<div id="p-alreadySignedIn">
+			<h1>Already signed in</h1>
+			<h2>Click anywhere</h2>
+			</div>
+		</a>
+	{{/if}}
+</template>
+
+<template name="register">
+	<div id="signUpContainerWrapper">
+		<div id="signUpContainer">
+			<div id="signUpTitle">
+				<h3>
+					SIGN UP
+				</h3>
+			</div>
+
+			<form id="signUpForm">  
+				<div class="signUpFormElement">
+					<label for="registerUserName">
+						Username:
+					</label>
+					<br>
+					<input type="text" name="registerUserName" class="signUpInput" required autocomplete="off">
+				</div>
+				
+				<div class="signUpFormElement">
+					<label for="registerEmail">
+						Email:
+					</label>
+					<br>
+					<input type="email" name="registerEmail"  class="signUpInput" required autocomplete="off">
+				</div>
+				
+				<div class="signUpFormElement">
+					<label for="registerPassword">
+						Password:
+					</label>
+					<br>
+					<input type="password" name="registerPassword"  class="signUpInput" required>
+				</div>
+				
+				<div class="signUpFormElement">
+					<input id="signUpButton" type="submit" value="Sign Up">
+				</div>
+			</form>
+		</div>
+	</div>
+</template>
+
+<template name="login">
+	<div id="signInContainerWrapper">
+		<div id="signInContainer">
+			<div id="signInTitle">
+				<h3>
+					SIGN IN
+				</h3>
+			</div>
+
+			<form id="signInForm">
+				<div class="signInFormElement">
+					<label for="loginUsername">
+						Username:
+					</label>
+					<input type="text" name="loginUsername"  class="signInInput" required autocomplete="off">
+				</div>
+
+				<div class="signInFormElement">
+					<label for="loginPassword">
+						Password:
+					</label>
+					<input type="password" name="loginPassword" class="signInInput" required>
+				</div>
+
+				<div class="signInFormElement">
+					<input id="signInButton" type="submit" value="Sign In">
+				</div>
+			</form>
+		</div>  
+	</div>  
+</template>

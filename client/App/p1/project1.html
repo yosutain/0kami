@@ -1,0 +1,150 @@
+<template name="openProject1">
+	<div id="mainApp" class="openProject1">
+		{{#if currentUser}}
+			{{#if accessible}}
+				<div id="p1-outerProjectWrapper" class="p1-bgColor-{{project.color}}">
+					<div>
+						{{> board}}
+					</div>
+				</div>
+			{{else}}
+				<div id="openProject1Wrapper" class="p1-bgColor-0">
+				</div>
+			{{/if}}
+		{{/if}}
+	</div>
+</template>
+
+<template name="board">
+	{{> backlogColumn}}
+	{{> laneColumn}}
+</template>
+
+<template name="addContainer">
+	<button class="addContainer" typeOfContainer="{{type}}" location="{{location}}">
+		New {{type}}
+	</button>
+</template>
+
+<template name="laneColumn">
+	<div id="laneColumn">
+		<div>
+			{{#each lanes}}
+				{{> lane lane=this columns=this.columns}}
+			{{/each}}
+
+			{{> addContainer type="Lane" location="Lane"}}
+		</div>
+	</div>
+</template>
+
+<template name="lane">
+	<div class="laneTitle editContainer" lane={{lane.id}}>
+		<div>{{lane.title}}</div>
+	</div>
+	<div class="lane" lane={{lane.id}}>
+		<div>
+		{{#let lane=lane}}
+			{{#each columns}}
+				{{> column column=this lane=lane}}
+			{{/each}}
+		{{/let}}
+			{{> addContainer type="Column" location=lane.id}}
+		</div>
+	</div>
+</template>
+
+<template name="column">
+	<div class="column">
+		<div>
+			<div class="columnTitle editContainer" column={{column.id}} lane={{lane.id}}>
+				<div>{{column.title}}</div>
+			</div>
+
+			{{#each cards lane.id column.id}}
+				{{> card card=this cardNumber=@index location=lane.id}}
+			{{/each}}
+
+			{{> addCard location=lane.id column=column.id}}
+		</div>
+	</div>
+</template>
+
+<template name="backlogColumn">
+	<div id="backlogColumn">
+		<div>
+			{{#each backlogs}}
+				{{> backlog backlog=this}}
+			{{/each}}
+
+			{{> addContainer type="Backlog" location="Backlog"}}
+		</div>
+	</div>
+</template>
+
+<template name="backlog">
+	<div class="backlog">
+		<div>
+			<div class="backlogTitle editContainer" backlog={{backlog.id}}>
+				<div>{{backlog.title}}</div>
+			</div>
+
+			{{#each cards backlog.id backlog.id}}
+				{{> card card=this cardNumber=@index location=backlog.id}}
+			{{/each}}
+
+			{{> addCard location=backlog.id}}
+		</div>
+	</div>
+</template>
+
+<template name="card">
+	<div class="draggableCard droppableCard" 
+	droppable="true" draggable="true" 
+	index={{cardNumber}} location={{location}} cardId={{card.id}}>
+		<div class="card draggableChild droppableChild" cardId={{card.id}}>
+			<div class="draggableChild droppableChild" cardId={{card.id}}>{{card.title}}</div>
+		</div>
+	</div>
+</template>
+
+<template name="addCard">
+	<div class="droppableCard" droppable="true" 
+	index="last" location={{location}} column={{column}}>
+		<button class="addCard droppableChild" location={{location}} column={{column}}>
+			New Card
+		</button>
+	</div>
+</template>
+
+<template name="p1ContainerPopup">
+	<div id="popupManager">
+		<div id="p1-containerPopup">
+			<form>
+		    	<label for="title">
+		    		{{type}} Title:
+		    	</label>
+		        <input name="title" type="text" require autocomplete="off">
+		        <input type="submit" value="{{action}} {{type}}">
+		    </form>
+		</div>
+	</div>
+</template>
+
+<template name="p1CardPopup">
+	<div id=popupManager>
+		<div id="p1-cardPopup">
+			<div id="p1-cardPopupContent">
+				<div class="p1-cardPopupRow">
+					<div id="p1-cardPopupTitle">
+						{{card.title}}
+					</div>
+				</div>
+			</div>
+			
+			<div id="p1-cardPopupMenu">
+				<div id="cardRemovalButton">Remove Card</div>
+			</div>
+		</div>
+	</div>
+</template>

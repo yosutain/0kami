@@ -1,0 +1,159 @@
+@import "../mixins";
+@import "../colors";
+
+header {
+	position: fixed;
+	z-index: 100;
+}
+
+body {
+	#fullScreen;
+	text-align: center;
+	overflow: hidden;
+
+	background-color: #ccc;
+	background: radial-gradient(at bottom right, rgba(0,0,0,50), rgba(255,255,255,50));
+}
+
+#closePopup {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	height: 50px;
+	width: 50px;
+	font-weight: normal;
+	font-size: 30px;
+	border-radius: 40px;
+	background-color: rgba(255,255,255,0.0);
+	color: rgba(0,0,0,0.5); 
+	border: solid 0px rgba(0,0,0,0.8); 
+	transition: all 0.5s;
+	z-index: 100;
+	&:hover {
+		background-color: rgba(0,0,0,0.1); 
+		color: rgba(0,0,0,0.6); 
+	}
+}
+
+#appName {
+	margin: 10px;
+	height: 36px;
+	font-weight: normal;
+	font-size: 20px;
+}
+
+#myAvatar {
+	border: none;
+	position: fixed;
+	margin: 10px;
+	top: 0;
+	right: 0;
+	width: 36px;
+	height: 36px;
+	font-weight: bolder;
+	font-size: 20px;
+	border-radius: 36px;
+}
+
+#myAvatar.avatarColor1 {
+	background-color: rgba(0,0,0,0.5);
+	color: rgba(255,255,255,0.8);
+	border: solid 2px rgba(255,255,255,0.6);
+}
+
+#myAvatar.avatarColor2 {
+	background-color: rgba(255,255,255,0.8);
+	color: rgba(0,0,0,0.5);
+	border: solid 2px rgba(0,0,0,0.5);
+}
+
+#myAvatar.avatarColor3 {
+	background-color: rgba(0,0,0,0.5);
+	color: rgba(255,0,150,0.8);
+	border: solid 2px rgba(255,0,150,0.8);
+}
+
+#closeProject {
+	position: fixed;
+	top: 10px;
+	left: 0;
+	padding-right: 20px;
+	padding-left: 10px;
+	height: 40px;
+	line-height: 20px;
+	font-weight: bolder;
+	font-size: 20px;
+	border-radius: 0 40px 40px 0;
+	background-color: rgba(0,0,0,0.5); 
+	color: rgba(255,255,255,0.8);
+	border: solid 2px rgba(255,255,255,0.6);
+	border-left: solid 0 rgba(255,255,255,0.6);
+}
+
+#headerProjectTitle {
+	position: fixed;
+	top: 20px;
+	left: 100px;
+	height: 40px;
+	line-height: 20px;
+	overflow-x: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-weight: bolder;
+	font-size: 20px;
+	color: rgba(0,0,0,0.8); 
+	&:hover {
+		color: black; 
+		text-shadow: 0px 0px 3px rgba(250, 250, 250, 0.5);
+	}
+}
+
+#popupManager {
+	z-index: 1000;
+	position: fixed;
+	#fullScreen;
+	text-align: center;
+	overflow: hidden;
+}
+
+#avatarMenuPopup {
+	position: fixed;
+	top: 0;
+	#fullScreen;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	background-color: rgba(255,255,255,0.9);
+}
+
+#avatarMenuButton {
+	background-color: rgba(255, 255, 255, 0.2);
+	color: rgba(0, 0, 0, 0.7);
+	border: 1px rgba(0, 0, 0, 0.7) solid;
+	margin: auto;
+	margin-bottom: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 20px;
+	width: 250px;
+	&:hover {
+		border-color: @magenta;
+		color: @magenta;
+	}
+}
+
+#myUserName {
+	font-size: 20px;
+	font-weight: normal;
+	color: rgba(0, 0, 0, 0.9);
+	padding: 10px;
+	margin: 10px;
+}
+
+#signOutButton {
+	#avatarMenuButton;
+}
+
+#avatarMenuGoHome {
+	#avatarMenuButton;
+}

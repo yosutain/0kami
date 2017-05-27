@@ -1,0 +1,379 @@
+@import "../../mixins";
+@import "../../colors";
+
+#p1-adderButtonStyle {
+	background-color: rgba(0,0,0,0.1);
+	color: rgba(255,255,255,0.8);
+	border: dashed 1px rgba(255,255,255,0.8);
+	&:hover{
+		background-color: rgba(50,50,50,0.1);
+		color: rgba(255,255,255,0.9);
+	}
+}
+
+#p1-outerProjectWrapper {
+	position: absolute;
+	#fullScreen;
+	overflow: hidden; 
+	background-color: #ccc;
+	& > div {
+		#fullScreenMinusHeader;
+	}
+}
+
+.p1-bgColor-0 {
+	background: linear-gradient(to top, #333333, #dddddd);
+}
+
+.p1-bgColor-1 {
+	background: linear-gradient(to top, darken(@yellow, 40%), darken(@yellow, 10%));
+}
+
+.p1-bgColor-2 {
+	background: linear-gradient(to top, darken(@blue, 40%), #dddddd);
+}
+
+.p1-bgColor-3 {
+	background: linear-gradient(to top, darken(@green, 40%), #dddddd);
+}
+
+.p1-bgColor-4 {
+	background: linear-gradient(to top, darken(@lavender, 40%), darken(@lavender, 10%));
+}
+
+.p1-bgColor-5 {
+	background: linear-gradient(to top, darken(@red, 20%), fade(@magenta, 50%));
+}
+
+.p1-bgColor-6 {
+	background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.3)), 
+				@bg6m no-repeat center; 
+	background-size: cover;
+}
+
+.p1-bgColor-7 {
+	background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), 
+				@bg7m no-repeat center; 
+	background-size: cover;
+}
+.p1-bgColor-8 {
+	background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), 
+				@bg8m no-repeat center; 
+	background-size: cover;
+}
+.p1-bgColor-9 {
+	background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), 
+				@bg9m no-repeat center; 
+	background-size: cover;
+}
+.p1-bgColor-10 {
+	background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), 
+				@bg10m no-repeat center; 
+	background-size: cover;
+}
+
+#backlogColumn {
+	height:calc(~"100vh - 60px");
+	width: 25vw;
+	position: absolute;
+	overflow: hidden; 
+	& > div {
+		height: 100%;
+		#innerScrollableY;
+		& .backlog {
+			background-color: rgba(0,0,0,0.3);
+			position: relative;
+			z-index: 0;
+			padding-bottom: 5px;
+			margin-bottom: 20px;
+			& .backlogTitle {
+				height: 40px;
+				line-height: 40px;
+				margin: 0px;
+				padding: 0px;
+				background-color: rgba(0,0,0,0.5);
+				color: rgba(255,255,255,0.8);
+				&:hover{
+					color: rgba(255,255,255,0.9);
+				}
+			}
+		}
+		& button.addContainer {
+			margin: auto; 
+			padding-left: 20px;
+			padding-right: 20px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			margin-bottom: 60px;
+			#p1-adderButtonStyle;
+		}
+	}
+}
+
+#laneColumn {
+	height:calc(~"100vh - 60px");
+	width:calc(~"75vw - 10px");
+	text-align: left;
+	position: absolute;
+	right: 0px;
+	overflow: hidden; 
+	& > div {
+		height: 100%;
+		#innerScrollableY;
+		& .laneTitle {
+			background-color: rgba(0,0,0,0.6);
+			width:calc(~"75vw - 10px");
+			& > div {
+				padding: 10px;
+				color: rgba(255,255,255,0.8);
+				&:hover{
+					color: rgba(255,255,255,0.9);
+				}
+			}
+		}
+		& .lane {
+			width:calc(~"75vw - 10px");
+			overflow: hidden;
+			margin-bottom: 40px;
+			& > div {
+				text-align: left;
+				display: flex;
+				flex-direction: row;
+				#innerScrollableX;
+				& .column {
+					display: flex;
+					flex-direction: column;
+					width: 200px;
+					& > div{
+						background-color: rgba(0,0,0,0.3);
+						margin-right: 10px;
+						& .columnTitle {
+							padding: 10px;
+							text-align: center;
+							font-size: 20px;
+							font-weight: bolder;
+							color: rgba(250, 250, 250, 0.7);
+							&:hover{
+								color: rgba(250, 250, 250, 0.8);
+							}
+						}
+						& form.card {
+							width: 170px;
+						}
+					}
+				}
+				& > button.addContainer {
+					padding: 10px;
+					#p1-adderButtonStyle;
+					border-top: none;
+					width: 180px;
+					min-width: 180px;
+					height: 50px;
+				}
+			}
+		}
+		& > button.addContainer {
+			text-align: center;
+			width: 90%;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			margin-left: 5%;
+			margin-right: 5%;
+			margin-bottom: 60px;
+			#p1-adderButtonStyle;
+		}
+	}
+}
+
+button.addCard {
+	height: 50px;
+	width: 190px;
+	padding-bottom: 5px;
+	color: rgba(255,255,255,0.6);
+	border: none;
+	background: none;
+	&:hover{
+		color: rgba(255,255,255,0.9);
+	}
+}
+
+.card {
+	display: block;
+	margin: 10px;
+	background-color: rgba(200,200,200,1);
+	box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.3);
+	text-align: left;
+	cursor: default;
+	&:hover{
+		background-color: rgba(220, 220, 220, 1);
+		box-shadow: 0px 1px 2px 2px rgba(0,0,0,0.3);
+	}
+	& > div  {
+		color: rgba(0,0,0,0.8);
+		padding: 10px;
+		overflow-x: hidden;
+		text-overflow: ellipsis;
+		word-break: break-word;
+	}
+	&#p1-createCardForm {
+		& input[type=text] {
+			background-color: rgba(0, 0, 0, 0.0);
+			color: rgba(0, 0, 0, 0.8);
+			padding: 10px;
+
+			overflow-x: hidden;
+			text-overflow: ellipsis;
+			word-break: break-word;
+		}
+		& input[type=submit] {
+			background-color: rgba(0, 0, 0, 0.0);
+			box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.3);
+			display: none;
+		}
+	}
+}
+
+.backlog #p1-createCardForm input[type=text] {
+	width: 295px;
+}
+
+.lane #p1-createCardForm input[type=text] {
+	width: 150px;
+}
+
+#p1-containerPopup {
+	#fullScreen;
+	background-color: rgba(250, 250, 250, 0.5);
+	& form {
+		background-color: rgba(100, 100, 100, 1);
+		background: linear-gradient(to top, #333333, #555555);
+		color: rgba(250, 250, 250, 0.8);
+		position: absolute;
+		height: 40vh;
+		width: 80vw;
+		top: 10vh;
+		left: 10vw;
+		border-radius: 5px;
+		border-top: 1px solid rgba(250, 250, 250, 0.8);
+		box-shadow: inset 0px 0px 0px 3px rgba(0,0,0,0.5),
+							0px 3px 2px 3px rgba(0,0,0,0.5);
+		& label {
+			display: table;
+			font-size: 20px;
+			padding: 20px;
+		}
+		& input[type=text] {
+			background-color: rgba(0, 0, 0, 0.3);
+			color: rgba(250, 250, 250, 0.8);
+			font-size: 20px;
+			text-align: center;
+			width: 50vw;
+			padding: 10px;
+			margin: 10px;
+			border-top: 1px rgba(0, 0, 0, 0.5) solid;
+			border-left: 1px rgba(0, 0, 0, 0.0) solid;
+			border-bottom: 1px rgba(250, 250, 250, 0.5) solid;
+			border-right: 1px rgba(250, 250, 250, 0.3) solid;
+			#selectableText;
+		}
+		& input[type=submit] {
+			background-color: rgba(0, 0, 0, 0.2);
+			color: rgba(250, 250, 250, 0.8);
+			border-top: 1px rgba(250, 250, 250, 0.5) solid;
+			border-left: 1px rgba(250, 250, 250, 0.2) solid;
+			border-bottom: 1px rgba(0, 0, 0, 0.5) solid;
+			border-right: 1px rgba(0, 0, 0, 0.0) solid;
+			margin: 10px;
+			padding: 10px;
+			padding-left: 30px;
+			padding-right: 30px;
+			font-size: 20px;
+		}
+	}
+}
+
+#p1-cardPopup {
+	#fullScreen;
+	#innerScrollableY;
+	background-color: rgba(250, 250, 250, 0.5);
+	& #p1-cardPopupContent {
+		border-radius: 4px;
+		min-height: 80vh;
+		width: 80vw;
+		margin-top: 10vh;
+		margin-left: 10vw;
+		background-color: rgba(250, 250, 250, 0.95);
+		box-shadow: 0px 2px 2px 2px rgba(0,0,0,0.3);
+		& .p1-cardPopupRow {
+			display: flex;
+			flex-direction: row;
+			& #p1-cardPopupTitle {
+				color: rgba(0,0,0,0.8);
+				margin: 30px;
+				overflow-x: hidden;
+				text-overflow: ellipsis;
+				word-break: break-word;
+				font-size: 22px;
+			}
+		}
+	}
+	& #p1-cardPopupMenu {
+		position: absolute;
+		top: 10vh;
+		right: 10vw;
+		width: 200px;
+		height: 80vh;
+		display: flex;
+		flex-direction: column;
+		& > div {
+			margin: 20px;
+			padding: 10px;
+			box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.3);
+		}
+	}
+}
+
+#cardRemovalButton {
+	&.p1-confirmDeleteCard {
+		color: @red;
+	}
+}
+
+#p1-addCardForm {
+	& input[type=text] {
+		#selectableText;
+		padding: 10px;
+		margin: 10px;
+		margin-bottom: 10px;
+		width: 150px;
+		background-color: rgba(200,200,200,1);
+		box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.3);
+	}
+	& input[type=submit] {
+		display: none;
+	}
+}
+
+.draggableCard + div > #p1-addCardForm {
+	& input[type=text] {
+		margin-top: 0px;
+	}
+}
+
+#backlogTitle ~ div > #p1-addCardForm {
+	& input[type=text] {
+		width: 295px;
+	}
+}
+
+#placeholder {
+	min-width: 10px;
+	min-height: 40px;
+	display: block;
+	margin: 10px;
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+#draggedCard {
+	display: none;
+}

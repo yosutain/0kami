@@ -1,0 +1,228 @@
+<template name="openProject0">
+	{{#if currentUser}}
+		{{renderProject}}
+	{{/if}}
+</template>
+
+<template name="mainHeader">
+	<header id="mainHeader">
+		{{#if currentUser}}
+			<div id="appName">
+				0KAMI by JT
+			</div>
+
+			<button id="myAvatar" class="{{avatarColor}}">
+				{{initials}}
+			</button>
+		{{/if}}
+	</header>
+</template>
+
+<template name="projectSelector">
+	<div id="mainApp" class="projectSelector">
+		<div id="p0-projectSelectorWrapper" class="p0-bgColor3">
+			{{#if currentUser}}
+				<ul class="p0-projectList">
+					{{#each projects}}
+						{{>projectSelectorProject project=this}}
+					{{/each}}
+					<li id="p0-addProjectListItem" class="p0-projectListItem">
+						<button id="addProject">
+						+
+						</button>
+					</li>
+				</ul>
+			{{else}}
+				<div id="p0-noCurrentUser">
+					<div> 
+						<button id="p0-goToSignIn">
+							&#10084; Sign to access your projects &#10084;
+						</button>
+					</div>
+				</div>
+			{{/if}}
+		</div>
+	</div>
+</template>
+
+<template name="projectSelectorProject">
+	<li class="p0-projectListItem">
+		<div class="p0-projectWrapper" id={{project.id}}>
+			<div class="{{project.type}}">	
+				<div class="projectTitle projectColor{{project.color}}" projectId="{{project.id}}" projectTitle="{{project.title}}">
+					<h3>
+						{{project.title}}
+					</h3>
+				</div>
+
+				<button class="openProject projectColor{{project.color}}" id="openProject{{project.id}}">
+					<div class="p0-icon">
+					</div>
+				</button>
+			</div>
+		</div>
+	</li>
+</template>
+
+<template name="openProjectHeader">
+	<header id="openProjectHeader">
+		{{#if currentUser}}
+			{{#if accessible}}
+			<div id="headerProjectTitle">{{title}}</div>
+			{{/if}}
+			
+			<button id="myAvatar" class="{{avatarColor}}">
+				{{initials}}
+			</button>
+		{{/if}}
+		<button id="closeProject">
+			Back
+		</button>
+	</header>
+</template>
+
+<template name="projectCreationPopup">
+	<div id=popupManager>
+		{{> closeAllPopups}}
+		<div id=projectCreationPopup>
+			<form>
+				<div class="addProjectTitle">
+					<label for="projectTitle">
+						Project Title
+					</label>
+					<input id="projectTitle" type="text" name="projectTitle" required autocomplete="off">
+				</div>
+
+				<div class="addProjectRadios">
+					<input id="projectType1" type="radio" name="projectType" value="projectType1"> 
+					<label for="projectType1">
+						<div id="p0-icon-1">
+						</div>
+					</label>
+
+					<input id="projectType2" type="radio" name="projectType" value="projectType2"> 
+					<label for="projectType2">
+						<div id="p0-icon-2">
+						</div>
+					</label>
+
+					<input id="projectType3" type="radio" name="projectType" value="projectType3"> 
+					<label for="projectType3">
+						<div id="p0-icon-3">
+						</div>
+					</label>
+
+					<div id="p0-project1Description">
+						<h1>Kanban</h1>
+						<p>Manage your projects in the agile way</p>
+						
+						<div id="p0-projectTemplateToggles">
+							<h6>Example Project</h6>
+							<label>
+								<input type="checkbox" name="agileTemplate" value="template1" checked>
+								<div class="p0-checkBoxToggle"></div>
+							</label>
+						</div>
+
+						<input id="createProject" type="submit" value="Create Agile Project">
+					</div>
+
+					<div id="p0-project2Description">
+						<h1>Chi Mail</h1>
+						<p>Create, Design and send emails</p>
+						
+						<div id="p0-projectTemplateToggles">
+							<h6>Example Email</h6>
+							<label>
+								<input type="checkbox" name="emailTemplate" value="template1" checked>
+								<div class="p0-checkBoxToggle"></div>
+							</label>
+						</div>
+
+						<input id="createProject" type="submit" value="Create Email Project">
+					</div>
+
+					<div id="p0-project3Description">
+						<h1>API</h1>
+						<p>Call APIs and stuff</p>
+
+						<div id="p0-projectTemplateToggles">
+							<h6>Example API calls</h6>
+							<label>
+								<input type="checkbox" name="APITemplate" value="template1" checked>
+								<div class="p0-checkBoxToggle"></div>
+							</label>
+						</div>
+
+						<input id="createProject" type="submit" value="Create API Project">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</template>
+
+<template name="editProjectPopup">
+	<div id="popupManager">
+	{{> closeAllPopups}}
+		<div id="editProjectPopup">
+			<form id="p0-editProjectTitleForm">
+				<div class="editProjectTitle">
+					<label for="projectTitle">
+						Project Title
+					</label>
+					<input id="projectTitle" type="text" name="projectTitle" required autocomplete="off">
+				</div>
+				{{> projectColorRadios}}
+				<input id="p0-editProject" type="submit" value="Confirm Edit">
+			</form>
+			<div id=deleteProject>Remove Project</div>
+		</div>
+	</div>
+</template>
+
+<template name="projectColorRadios">
+	<div class="projectColorRadios">
+		<div id="projectColorRadioTitle">Project Color:</div>
+
+		<input id="projectColor1" type="radio" name="projectColor" value="1"> 
+		<label for="projectColor1">
+		</label>
+
+		<input id="projectColor2" type="radio" name="projectColor" value="2"> 
+		<label for="projectColor2">
+		</label>
+
+		<input id="projectColor3" type="radio" name="projectColor" value="3"> 
+		<label for="projectColor3">
+		</label>
+
+		<input id="projectColor4" type="radio" name="projectColor" value="4"> 
+		<label for="projectColor4">
+		</label>
+
+		<input id="projectColor5" type="radio" name="projectColor" value="5"> 
+		<label for="projectColor5">
+		</label>
+
+		<input id="projectColor6" type="radio" name="projectColor" value="6"> 
+		<label for="projectColor6">
+		</label>
+
+		<input id="projectColor7" type="radio" name="projectColor" value="7"> 
+		<label for="projectColor7">
+		</label>
+
+		<input id="projectColor8" type="radio" name="projectColor" value="8"> 
+		<label for="projectColor8">
+		</label>
+
+		<input id="projectColor9" type="radio" name="projectColor" value="9"> 
+		<label for="projectColor9">
+		</label>
+
+		<input id="projectColor10" type="radio" name="projectColor" value="10"> 
+		<label for="projectColor10">
+		</label>
+	</div>
+</template>
