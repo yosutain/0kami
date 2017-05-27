@@ -11,7 +11,7 @@
 ### Stack:
 
 Language 	| Used
--			| -
+-|-
 HTML		| Yes
 CSS			| Yes
 Less		| Yes
